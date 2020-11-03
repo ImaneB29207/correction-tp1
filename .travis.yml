@@ -3,9 +3,9 @@ script:
   - cd ./simple-api
   - mvn clean verify
   - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-  - docker push imaneB29207/correction-tp1-master_database
-  - docker push imaneB29207/correction-tp1-master_backend
-  - docker push imaneB29207/correction-tp1-master_httpd
+  - docker push imaneb29207/correction-tp1-master_database
+  - docker push imaneb29207/correction-tp1-master_backend
+  - docker push imaneb29207/correction-tp1-master_httpd
 cache:
   directories:
     - $HOME/.m2
