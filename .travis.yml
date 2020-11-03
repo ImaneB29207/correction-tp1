@@ -1,7 +1,9 @@
 language: java
 script:
+  - cd ./simple-api/
   - mvn clean verify org.jacoco:jacoco-maven-plugin:prepare-agent install
-    sonar:sonar -Dsonar.projectKey=devops-epf --file ./simple-api/pom.xml
+    sonar:sonar -Dsonar.projectKey=devops-epf
+  - cd ..
   #- mvn clean verify --file ./simple-api/pom.xml
   #
   - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
