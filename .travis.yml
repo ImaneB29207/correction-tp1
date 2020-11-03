@@ -1,17 +1,48 @@
 language: java
-script:
-  - cd ./simple-api/
-  - mvn clean verify org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=devops-ib
-  - cd ..
-  #- mvn clean verify --file ./simple-api/pom.xml
-  - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-  - docker build -t $DOCKER_LOGIN/correction-tp1-master_database database
-  - docker build -t $DOCKER_LOGIN/correction-tp1-master_backend simple-api
-  - docker build -t $DOCKER_LOGIN/correction-tp1-master_httpd httpd
-
-  - docker push $DOCKER_LOGIN/correction-tp1-master_database
-  - docker push $DOCKER_LOGIN/correction-tp1-master_backend
-  - docker push $DOCKER_LOGIN/correction-tp1-master_httpd
+stage:
+  - connection
+  - build
+  - push
+  -
+jobs:
+  include:
+    - stage: maven
+        name: mavenclean
+        script: mvn clean verify org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=devops-ib
+    - stage: docker
+        name: dockerlogin
+        script: docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+    - stage: build
+        name: build1
+        script: docker build -t $DOCKER_LOGIN/correction-tp1-master_database database
+    - stage: build
+        name: build2
+        script: docker build -t $DOCKER_LOGIN/correction-tp1-master_backend simple-api
+    - stage: build
+        name: build3
+        script: docker build -t $DOCKER_LOGIN/correction-tp1-master_httpd httpd
+    - stage: push
+        name: push1
+        script: docker push $DOCKER_LOGIN/correction-tp1-master_database
+    - stage: push
+        name: push2
+        script: docker push $DOCKER_LOGIN/correction-tp1-master_backend
+    - stage: push
+        name: push3
+        script: docker push $DOCKER_LOGIN/correction-tp1-master_httpd
+#script:
+#  - cd ./simple-api/
+#  - mvn clean verify org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=devops-ib
+#  - cd ..
+#  #- mvn clean verify --file ./simple-api/pom.xml
+#  - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+#  - docker build -t $DOCKER_LOGIN/correction-tp1-master_database database
+#  - docker build -t $DOCKER_LOGIN/correction-tp1-master_backend simple-api
+#  - docker build -t $DOCKER_LOGIN/correction-tp1-master_httpd httpd
+#
+#  - docker push $DOCKER_LOGIN/correction-tp1-master_database
+#  - docker push $DOCKER_LOGIN/correction-tp1-master_backend
+#  - docker push $DOCKER_LOGIN/correction-tp1-master_httpd
 
 cache:
   directories:
