@@ -18,3 +18,7 @@ cache:
     - $HOME/.m2
 services:
   - docker
+addons:
+  sonarcloud:
+    organization: "devops-epf"
+    token: "$SONARCLOUD_TOKEN"
