@@ -30,7 +30,7 @@ jobs:
 #  - docker build -t $DOCKER_LOGIN/correction-tp1-master_database database
 #  - docker build -t $DOCKER_LOGIN/correction-tp1-master_backend simple-api
 #  - docker build -t $DOCKER_LOGIN/correction-tp1-master_httpd httpd
-#
+
 #  - docker push $DOCKER_LOGIN/correction-tp1-master_database
 #  - docker push $DOCKER_LOGIN/correction-tp1-master_backend
 #  - docker push $DOCKER_LOGIN/correction-tp1-master_httpd
