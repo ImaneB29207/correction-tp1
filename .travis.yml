@@ -9,9 +9,9 @@ jobs:
     - stage: maven
       name: mavenclean
       script:
-        cd ./simple-api/
-        mvn clean verify org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=devops-ib
-        cd ..
+        - cd ./simple-api/
+        - mvn clean verify org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=devops-ib
+        - cd ..
     - stage: docker
       name: dockerlogin
       script: docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
