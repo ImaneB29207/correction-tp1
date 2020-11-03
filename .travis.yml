@@ -4,13 +4,13 @@ script:
   #
   - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
   #
-  - docker build -t imaneb29207/correction-tp1-master_database database
-  - docker build -t imaneb29207/correction-tp1-master_backend simple-api
-  - docker build -t imaneb29207/correction-tp1-master_httpd httpd
+  - docker build -t imanebenmansour/correction-tp1-master_database database
+  - docker build -t imanebenmansour/correction-tp1-master_backend simple-api
+  - docker build -t imanebenmansour/correction-tp1-master_httpd httpd
   #
-  - docker push imaneb29207/correction-tp1-master_database
-  - docker push imaneb29207/correction-tp1-master_backend
-  - docker push imaneb29207/correction-tp1-master_httpd
+  - docker push imanebenmansour/correction-tp1-master_database
+  - docker push imanebenmansour/correction-tp1-master_backend
+  - docker push imanebenmansour/correction-tp1-master_httpd
 cache:
   directories:
     - $HOME/.m2
