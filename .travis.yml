@@ -7,29 +7,29 @@ stage:
 jobs:
   include:
     - stage: maven
-        name: mavenclean
-        script: mvn clean verify org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=devops-ib --file /simple-api/pom.xml
+      name: mavenclean
+      script: mvn clean verify org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=devops-ib --file /simple-api/pom.xml
     - stage: docker
-        name: dockerlogin
-        script: docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+      name: dockerlogin
+      script: docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
     - stage: build
-        name: build1
-        script: docker build -t $DOCKER_LOGIN/correction-tp1-master_database database
+      name: build1
+      script: docker build -t $DOCKER_LOGIN/correction-tp1-master_database database
     - stage: build
-        name: build2
-        script: docker build -t $DOCKER_LOGIN/correction-tp1-master_backend simple-api
+      name: build2
+      script: docker build -t $DOCKER_LOGIN/correction-tp1-master_backend simple-api
     - stage: build
-        name: build3
-        script: docker build -t $DOCKER_LOGIN/correction-tp1-master_httpd httpd
+      name: build3
+      script: docker build -t $DOCKER_LOGIN/correction-tp1-master_httpd httpd
     - stage: push
-        name: push1
-        script: docker push $DOCKER_LOGIN/correction-tp1-master_database
+      name: push1
+      script: docker push $DOCKER_LOGIN/correction-tp1-master_database
     - stage: push
-        name: push2
-        script: docker push $DOCKER_LOGIN/correction-tp1-master_backend
+      name: push2
+      script: docker push $DOCKER_LOGIN/correction-tp1-master_backend
     - stage: push
-        name: push3
-        script: docker push $DOCKER_LOGIN/correction-tp1-master_httpd
+      name: push3
+      script: docker push $DOCKER_LOGIN/correction-tp1-master_httpd
 #script:
 #  - cd ./simple-api/
 #  - mvn clean verify org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=devops-ib
