@@ -9,7 +9,7 @@ script:
   - docker build -t imanebenmansour/correction-tp1-master_database database
   - docker build -t imanebenmansour/correction-tp1-master_backend simple-api
   - docker build -t imanebenmansour/correction-tp1-master_httpd httpd
-  #
+
   - docker push imanebenmansour/correction-tp1-master_database
   - docker push imanebenmansour/correction-tp1-master_backend
   - docker push imanebenmansour/correction-tp1-master_httpd
