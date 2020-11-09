@@ -1,0 +1,13 @@
+---
+# tasks file for roles/database
+- name: database container
+  docker_container:
+    name: database
+    image: raudut/docker-tp-2-main_database
+    state: started
+    networks:
+      - name: app-network
+    env:
+      POSTGRES_PASSWORD: "{{ db_password }}"
+      POSTGRES_USER: "{{ db_user }}"
+      POSTGRES_DB: db
