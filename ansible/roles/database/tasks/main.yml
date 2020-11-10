@@ -3,7 +3,7 @@
 - name: database container
   docker_container:
     name: database
-    image: raudut/docker-tp-2-main_database
+    image: imanebenmansour/correction-tp1-master_database
     state: started
     networks:
       - name: app-network

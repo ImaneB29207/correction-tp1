@@ -1,4 +1,36 @@
 language: java
-script:
-  - cd ./simple-api
-  - mvn clean verify
+stage:
+  - build
+  - push
+
+jobs:
+  include:
+    - stage: maven
+      name: mavenclean
+      script:
+        - cd ./simple-api/
+        - mvn clean verify org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=devops-ib
+        - cd ..
+    - stage: build
+      name: docker
+      script:
+        - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+        - docker build -t $DOCKER_LOGIN/correction-tp1-master_database database
+        - docker build -t $DOCKER_LOGIN/correction-tp1-master_backend simple-api
+        - docker build -t $DOCKER_LOGIN/correction-tp1-master_httpd httpd
+	    - docker build -t $DOCKER_LOGIN/correction-tp1-master_front front
+        - docker push $DOCKER_LOGIN/correction-tp1-master_database
+        - docker push $DOCKER_LOGIN/correction-tp1-master_backend
+        - docker push $DOCKER_LOGIN/correction-tp1-master_httpd
+	    - docker push $DOCKER_LOGIN/correction-tp1-master_front
+cache:
+  directories:
+    - $HOME/.m2
+
+services:
+  - docker
+
+addons:
+  sonarcloud:
+    organization: "imaneb29207"
+    token: "$SONARCLOUD_TOKEN"

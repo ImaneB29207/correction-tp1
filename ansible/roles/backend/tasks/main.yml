@@ -3,7 +3,7 @@
 - name: App container
   docker_container:
     name: backend
-    image: raudut/docker-tp-2-main_simple-api
+    image: imanebenmansour/correction-tp1-master_backend
     state: started
     networks:
       - name: app-network
