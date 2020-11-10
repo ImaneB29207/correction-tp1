@@ -18,11 +18,25 @@ jobs:
         - docker build -t $DOCKER_LOGIN/correction-tp1-master_database database
         - docker build -t $DOCKER_LOGIN/correction-tp1-master_backend simple-api
         - docker build -t $DOCKER_LOGIN/correction-tp1-master_httpd httpd
-	    - docker build -t $DOCKER_LOGIN/correction-tp1-master_front front
+        - docker build -t $DOCKER_LOGIN/correction-tp1-master_front front
         - docker push $DOCKER_LOGIN/correction-tp1-master_database
         - docker push $DOCKER_LOGIN/correction-tp1-master_backend
         - docker push $DOCKER_LOGIN/correction-tp1-master_httpd
-	    - docker push $DOCKER_LOGIN/correction-tp1-master_front
+        - docker push $DOCKER_LOGIN/correction-tp1-master_front
+#script:
+#  - cd ./simple-api/
+#  - mvn clean verify org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=devops-ib
+#  - cd ..
+#  #- mvn clean verify --file ./simple-api/pom.xml
+#  - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+#  - docker build -t $DOCKER_LOGIN/correction-tp1-master_database database
+#  - docker build -t $DOCKER_LOGIN/correction-tp1-master_backend simple-api
+#  - docker build -t $DOCKER_LOGIN/correction-tp1-master_httpd httpd
+
+#  - docker push $DOCKER_LOGIN/correction-tp1-master_database
+#  - docker push $DOCKER_LOGIN/correction-tp1-master_backend
+#  - docker push $DOCKER_LOGIN/correction-tp1-master_httpd
+
 cache:
   directories:
     - $HOME/.m2
