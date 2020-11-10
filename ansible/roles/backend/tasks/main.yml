@@ -5,6 +5,7 @@
     name: backend
     image: imanebenmansour/correction-tp1-master_backend
     state: started
+    pull: yes
     networks:
       - name: app-network
 
