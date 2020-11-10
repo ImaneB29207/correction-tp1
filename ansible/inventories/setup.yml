@@ -3,7 +3,7 @@ all:
     db_user: usr
     db_password: pwd
     ansible_user: centos
-    ansible_ssh_private_key_file: inventories/id_rsa
+    ansible_ssh_private_key_file: ~/Documents/key/id_rsa_imane
   children:
     prod:
       hosts: imane.benmansour.takima.cloud

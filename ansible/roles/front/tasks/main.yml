@@ -5,9 +5,6 @@
    name: frontend
    image: imanebenmansour/correction-tp1-master_front
    state: started
+   pull: yes
    networks:
     - name: app-network
-   ports:
-    - "8080:8080"
-   env:
-    VUE_APP_API_URL: localhost:8080

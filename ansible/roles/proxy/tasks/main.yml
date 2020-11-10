@@ -5,6 +5,7 @@
     name: reverse_proxy
     image: imanebenmansour/correction-tp1-master_httpd
     state: started
+    pull: yes
     networks:
       - name: app-network
     ports:
