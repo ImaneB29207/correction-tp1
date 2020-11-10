@@ -1,0 +1,11 @@
+---
+# tasks file for roles/proxy
+- name: Proxy container
+  docker_container:
+    name: reverse_proxy
+    image: imanebenmansour/correction-tp1-master_httpd
+    state: started
+    networks:
+      - name: app-network
+    ports:
+      - "80:80"

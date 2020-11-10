@@ -1,0 +1,14 @@
+---
+# tasks file for roles/backend
+- name: App container
+  docker_container:
+    name: backend
+    image: imanebenmansour/correction-tp1-master_backend
+    state: started
+    networks:
+      - name: app-network
+
+    env:
+      SPRING_DATASOURCE_PASSWORD: "{{ db_password }}"
+      SPRING_DATASOURCE_USER: "{{ db_user }}"
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/db
